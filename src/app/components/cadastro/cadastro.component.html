@@ -1,0 +1,89 @@
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <main class="container">
+    <div class="container-cadastro">
+      <mat-form-field class="nome-item" [ngClass]="{'erro': !message.value && form.submitted}">
+        <mat-label>Nome do item</mat-label>
+        <input matInput #message="ngModel" name="nomeItem" [(ngModel)]="nomeItem" required maxlength="50" />
+        <mat-hint align="start"></mat-hint>
+        <mat-hint align="end">{{ message.value.length }} / 50</mat-hint>
+        <span *ngIf="!message.value && form.submitted" class="error-message">O campo não pode estar vazio</span>
+      </mat-form-field>
+      
+      <mat-form-field [ngClass]="{'erro': !unidade.value && form.submitted}">
+        <mat-label>Unidade de medida</mat-label>
+        <mat-select #unidade="ngModel" name="unidadeMedida" [(ngModel)]="unidadeMedida" required>
+            @for (tipo of tipos; track $index) {
+                <mat-option [value]="tipo.value">{{ tipo.viewValue }}</mat-option>
+            }
+          
+        </mat-select>
+        <span *ngIf="!unidade.value && form.submitted" class="error-message">O campo não pode estar vazio</span>
+      </mat-form-field>
+
+      <mat-form-field [ngClass]="{'erro': !quantidade.value && form.submitted}">
+        <mat-label>Quantidade</mat-label>
+        <input matInput #quantidade="ngModel" name="quantidade" [(ngModel)]="quantidade" required />
+        <span *ngIf="!quantidade.value && form.submitted" class="error-message">O campo não pode estar vazio</span>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" [ngClass]="{'erro': !preco.value && form.submitted}">
+        <mat-label>Preço</mat-label>
+        <input
+          matInput
+          #preco="ngModel"
+          name="preco"
+          [(ngModel)]="preco"
+          currencyMask
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          required
+        />
+        <span *ngIf="!preco.value && form.submitted" class="error-message">O campo não pode estar vazio</span>
+      </mat-form-field>
+
+      <mat-radio-group [(ngModel)]="perecivel" name="perecivel">
+        <span>Produto perecível?</span>
+        <mat-radio-button value="true">Sim</mat-radio-button>
+        <mat-radio-button value="false">Não</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field appearance="fill" [ngClass]="{'erro': !dataFabricacao.value && form.submitted}">
+        <mat-label>Data de fabricação</mat-label>
+        <input
+          matInput
+          #dataFabricacao="ngModel"
+          name="dataFabricacao"
+          [(ngModel)]="dataFabricacaoValue"
+          [matDatepicker]="fabricacao"
+          placeholder="Escolha uma data"
+          required
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="fabricacao"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #fabricacao></mat-datepicker>
+        <span *ngIf="!dataFabricacao.value && form.submitted" class="error-message">O campo não pode estar vazio</span>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="perecivel === 'true'" appearance="fill" [ngClass]="{'erro': !dataValidade.value && form.submitted}">
+        <mat-label>Data de validade</mat-label>
+        <input
+          matInput
+          #dataValidade="ngModel"
+          name="dataValidade"
+          [(ngModel)]="dataValidadeValue"
+          [matDatepicker]="validade"
+          placeholder="Escolha uma data"
+          required
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="validade"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #validade></mat-datepicker>
+        <span *ngIf="!dataValidade.value && form.submitted" class="error-message">O campo não pode estar vazio</span>
+      </mat-form-field>
+    </div>
+  </main>
+  <button mat-flat-button type="submit">Enviar</button>
+</form>
