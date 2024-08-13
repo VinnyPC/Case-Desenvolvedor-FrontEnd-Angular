@@ -22,7 +22,7 @@ import { ConfirmationDialogComponent } from '../../modal/confirmation-dialog/con
     ReactiveFormsModule,
     MatDialogModule,
   ],
-    
+
   templateUrl: './listagem.component.html',
   styleUrl: './listagem.component.css'
 })

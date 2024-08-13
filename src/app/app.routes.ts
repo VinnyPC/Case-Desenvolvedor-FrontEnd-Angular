@@ -5,4 +5,5 @@ import { ListagemComponent } from './components/listagem/listagem.component';
 export const routes: Routes = [
     { path: '', component: CadastroComponent },
     { path: 'listagem', component: ListagemComponent },
+    { path: 'cadastro', component: CadastroComponent },
 ];

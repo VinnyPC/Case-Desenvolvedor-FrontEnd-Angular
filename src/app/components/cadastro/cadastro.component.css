@@ -1,10 +1,11 @@
-form{
+form {
     margin-top: 2rem;
     min-width: 150px;
     max-width: 500px;
     width: 100%;
 }
-.nome-item{
+
+.nome-item {
     width: 100%;
 }
 
@@ -15,11 +16,13 @@ form{
     align-items: center;
     justify-content: center;
 }
-.container-cadastro{
+
+.container-cadastro {
     display: flex;
     flex-direction: column;
 
 }
+
 .erro {
     border: 1px solid red;
 }
@@ -27,6 +30,6 @@ form{
 .error-message {
     color: red;
     font-size: 12px;
-    display: block; 
+    display: block;
     margin-top: 4px
 }

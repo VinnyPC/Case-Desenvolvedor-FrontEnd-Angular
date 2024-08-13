@@ -55,6 +55,9 @@ export class CadastroComponent {
   dataFabricacao: Date | null = null;
   dataValidade: Date | null = null;
 
+  vencido:boolean = false
+  fabricacaoInvalida:boolean = false
+
 
   tipos = [
     { value: 'lt', viewValue: 'Litro' },
@@ -62,10 +65,10 @@ export class CadastroComponent {
     { value: 'un', viewValue: 'Unidade' },
   ];
 
-  
+
 
   onSubmit() {
-    
+
     if (!this.nomeItem || !this.unidadeMedida || this.quantidade === null || !this.preco || !this.dataFabricacao ||
       (this.perecivel === 'true' && !this.dataValidade)) {
       console.log('Erro nos campos');
@@ -101,6 +104,22 @@ export class CadastroComponent {
       case 'kg': return 'kg';
       case 'un': return 'un';
       default: return '';
+    }
+  }
+  checkValidade(date: Date | null) {
+    if (date) {
+      const hoje = new Date();
+      this.vencido = date.getTime() < hoje.getTime();
+    } else {
+      this.vencido = false;
+    }
+  }
+  checkFabricacao(date: Date | null){
+    if (date) {
+      const hoje = new Date();
+      this.fabricacaoInvalida = date.getTime() > hoje.getTime();
+    }else {
+      this.fabricacaoInvalida = false;
     }
   }
 
