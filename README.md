@@ -85,7 +85,7 @@ Inicie o servidor
 | Produto perecível  | Booleano | Sim         | Campo obrigatório para perecíveis                                              |
 | Data de fabricação | Data     | Sim         | Validação contra a data de validade (o produto pode ser marcado como vencido)  |
 | Data de validade   | Data     | Sim         | Deve ser posterior à data de fabricação                                        |
-                                                                  |
+                                                                  
 
  
 
