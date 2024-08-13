@@ -128,32 +128,31 @@
 
       <!-- data de validade -->
       <mat-form-field
-        *ngIf="perecivel"
-        appearance="fill"
-        [ngClass]="{ erro: !dataValidade && form.submitted }"
-      >
-        <mat-label>Data de validade</mat-label>
-        <input
-          matInput
-          name="dataValidade"
-          [(ngModel)]="dataValidade"
-          [matDatepicker]="validade"
-          #dataValidadeModel="ngModel"
-          placeholder="Escolha uma data"
-          required
-          (dateChange)="checkValidade($event.value)"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="validade"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #validade></mat-datepicker>
-        @if (!dataValidade && form.submitted) {
-        <span class="error-message"> O campo não pode estar vazio </span>
-        }@else if (vencido && form.submitted) {
-        <span class="error-message"> O produto está vencido! </span>
-        }
-      </mat-form-field>
+  *ngIf="perecivel"
+  appearance="fill"
+  [ngClass]="{ erro: (!dataValidadeModel.valid && form.submitted) || (vencido && form.submitted) }"
+>
+  <mat-label>Data de validade</mat-label>
+  <input
+    matInput
+    name="dataValidade"
+    [(ngModel)]="dataValidade"
+    [matDatepicker]="validade"
+    #dataValidadeModel="ngModel"
+    placeholder="Escolha uma data"
+    required
+    (dateChange)="checkValidade($event.value)"
+  />
+  <mat-datepicker-toggle matSuffix [for]="validade"></mat-datepicker-toggle>
+  <mat-datepicker #validade></mat-datepicker>
+
+  <span *ngIf="!dataValidadeModel.valid && form.submitted" class="error-message">
+    O campo não pode estar vazio
+  </span>
+  <span *ngIf="vencido && form.submitted" class="error-message">
+    O produto está vencido!
+  </span>
+</mat-form-field>
     </div>
   </main>
   <div class="cadastro-btns">

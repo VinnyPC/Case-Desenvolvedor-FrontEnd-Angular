@@ -117,7 +117,7 @@ export class CadastroComponent implements OnInit {
 
   onSubmit() {
     if (!this.nomeItem || !this.unidadeMedida || this.quantidade === null || !this.preco || !this.dataFabricacao ||
-      (this.perecivel && !this.dataValidade)) {
+      (this.perecivel && (!this.dataValidade || this.vencido))) {
       console.log('Erro nos campos');
       return;
     }
