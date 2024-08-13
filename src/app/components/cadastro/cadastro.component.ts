@@ -99,7 +99,7 @@ export class CadastroComponent implements OnInit {
   }
 
   validateQuantidade() {
-    this.quantidadeErro = null; 
+    this.quantidadeErro = null;
 
     if (this.unidadeMedida === 'un') {
       if (!Number.isInteger(this.quantidade)) {

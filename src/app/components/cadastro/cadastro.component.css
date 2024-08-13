@@ -18,6 +18,7 @@ main {
 .unid-medida-container {
     display: flex;
     gap: 5px;
+
 }
 
 
@@ -45,6 +46,6 @@ main {
     justify-content: center;
 }
 
-.radial-text{
+.radial-text {
     color: black
 }
