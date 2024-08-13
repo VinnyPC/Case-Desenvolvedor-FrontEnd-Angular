@@ -106,3 +106,11 @@ Na tela de listagem, cada item tem duas ações disponíveis: excluir e editar. 
  
 
 Caso queira deletar, o usuário é questionado para confirmação e depois o item é deletado.
+
+### Tecnologias utilizadas
+- Angular CLI: 18.1.4
+- Node: 20.11.1
+- Package Manager: npm 10.2.4
+- SO: win32 x64
+- MaterialUI 18.1.4
+- ng2-currency-mask
