@@ -52,7 +52,7 @@ export const MY_DATE_FORMATS = {
 export class CadastroComponent implements OnInit {
   @ViewChild('form') form: NgForm | undefined;
 
-  perecivel: string = 'false';
+  perecivel: boolean = false;
   nomeItem: string = '';
   unidadeMedida: string = '';
   quantidade: number | null = null;
@@ -99,7 +99,7 @@ export class CadastroComponent implements OnInit {
   }
 
   validateQuantidade() {
-    this.quantidadeErro = null; // Resetar o erro
+    this.quantidadeErro = null; 
 
     if (this.unidadeMedida === 'un') {
       if (!Number.isInteger(this.quantidade)) {
@@ -117,7 +117,7 @@ export class CadastroComponent implements OnInit {
 
   onSubmit() {
     if (!this.nomeItem || !this.unidadeMedida || this.quantidade === null || !this.preco || !this.dataFabricacao ||
-      (this.perecivel === 'true' && !this.dataValidade)) {
+      (this.perecivel && !this.dataValidade)) {
       console.log('Erro nos campos');
       return;
     }
@@ -161,7 +161,7 @@ export class CadastroComponent implements OnInit {
     this.preco = '';
     this.dataFabricacao = null;
     this.dataValidade = null;
-    this.perecivel = 'false';
+    this.perecivel = false;
     this.vencido = false;
     this.fabricacaoInvalida = false;
     this.form?.resetForm();

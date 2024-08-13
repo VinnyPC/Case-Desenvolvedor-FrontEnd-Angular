@@ -50,10 +50,10 @@
 
       <!-- produto perecivel -->
       <mat-radio-group [(ngModel)]="perecivel" name="perecivel">
-        <span>Produto perecível?</span>
-        <mat-radio-button value="Sim"><span class="radial-text" >Sim</span></mat-radio-button>
-        <mat-radio-button value="Não"><span class="radial-text" >Não</span></mat-radio-button>
-      </mat-radio-group>
+    <span>Produto perecível?</span>
+    <mat-radio-button [value]="true"><span class="radial-text">Sim</span></mat-radio-button>
+    <mat-radio-button [value]="false"><span class="radial-text">Não</span></mat-radio-button>
+</mat-radio-group>
 
       <!-- data de fabricaçao -->
       <mat-form-field appearance="fill" [ngClass]="{ erro: !dataFabricacao && form.submitted }">
@@ -71,7 +71,7 @@
       </mat-form-field>
 
       <!-- data de validade -->
-      <mat-form-field *ngIf="perecivel === 'true'" appearance="fill"
+      <mat-form-field *ngIf=perecivel appearance="fill"
         [ngClass]="{ erro: !dataValidade && form.submitted }">
         <mat-label>Data de validade</mat-label>
         <input matInput name="dataValidade" [(ngModel)]="dataValidade" [matDatepicker]="validade"
