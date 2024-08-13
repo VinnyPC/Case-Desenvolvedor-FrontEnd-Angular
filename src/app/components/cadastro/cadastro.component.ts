@@ -62,6 +62,8 @@ export class CadastroComponent {
     { value: 'un', viewValue: 'Unidade' },
   ];
 
+  
+
   onSubmit() {
     
     if (!this.nomeItem || !this.unidadeMedida || this.quantidade === null || !this.preco || !this.dataFabricacao ||
@@ -70,8 +72,11 @@ export class CadastroComponent {
       return;
     }
 
-    
+    // geracao de id para identificar dps
+    const uniqueId = new Date().getTime();
+
     const formData = {
+      id: uniqueId,
       nomeItem: this.nomeItem,
       unidadeMedida: this.unidadeMedida,
       quantidade: this.quantidade,
@@ -81,17 +86,12 @@ export class CadastroComponent {
       perecivel: this.perecivel,
     };
 
-    
-    const storedData = localStorage.getItem('formDataArray');
+    // adiciona/atualiza lista de itens
+    let storedData = localStorage.getItem('formDataArray');
     let formDataArray = storedData ? JSON.parse(storedData) : [];
-
-   
     formDataArray.push(formData);
 
-   
     localStorage.setItem('formDataArray', JSON.stringify(formDataArray));
-
-   
     console.log(formData);
   }
 
