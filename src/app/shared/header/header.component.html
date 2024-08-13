@@ -1,4 +1,19 @@
-<nav>
-    <a href="/">Cadastro</a> |
+<!-- <nav>
+    <div class="links-navbar">
+    <a href="/">Cadastro</a>
     <a href="/listagem">Listagem</a>
-</nav>
+    </div>
+</nav> -->
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon class="menu-icon">menu</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>search</mat-icon>
+    <span><a class="menu-link" href="/listagem">Listagem</a></span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>edit</mat-icon>
+    <span><a class="menu-link" href="/">Cadastro</a></span>
+  </button>
+</mat-menu>

@@ -1,0 +1,19 @@
+nav {
+    display: flex;
+    justify-content: end;
+    height: 10%;
+    background-repeat: no-repeat;
+}
+.menu-link {
+    text-decoration: none;
+    color: black;
+   margin-left: 10%; 
+}
+.links-navbar{
+    margin-right: 10%;
+}
+.menu-icon{
+    color: #fdfbff;
+    font-size: 2rem;
+    position: absolute;
+}

@@ -48,6 +48,7 @@ export const MY_DATE_FORMATS = {
 })
 export class CadastroComponent {
   perecivel: string = 'false';
+
   nomeItem: string = '';
   unidadeMedida: string = '';
   quantidade: number | null = null;
@@ -75,7 +76,7 @@ export class CadastroComponent {
       return;
     }
 
-    // geracao de id para identificar dps
+    // geracao de id com data para identificar dps
     const uniqueId = new Date().getTime();
 
     const formData = {

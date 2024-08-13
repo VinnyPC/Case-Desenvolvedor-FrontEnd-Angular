@@ -1,5 +1,5 @@
-<form (ngSubmit)="onSubmit()" #form="ngForm">
-  <main class="container">
+<form (ngSubmit)="onSubmit()" #form="ngForm" class="container">
+  <main>
     <div class="container-cadastro">
       <!-- nome do item -->
       <mat-form-field
@@ -17,13 +17,13 @@
         />
         <mat-hint align="start"></mat-hint>
         <mat-hint align="end">{{ nomeItem.length }} / 50</mat-hint>
-        <span *ngIf="!nomeItem && form.submitted" class="error-message"
-          >O campo não pode estar vazio</span
-        >
+        @if (!nomeItem && form.submitted) {
+        <span class="error-message">O campo não pode estar vazio</span>
+        }
       </mat-form-field>
 
-      <!-- unidade de medida -->
-      <mat-form-field [ngClass]="{ erro: !unidadeMedida && form.submitted }">
+      <div class="unid-medida-container">
+        <mat-form-field [ngClass]="{ erro: !unidadeMedida && form.submitted }">
         <mat-label>Unidade de medida</mat-label>
         <mat-select
           name="unidadeMedida"
@@ -31,13 +31,13 @@
           #unidadeModel="ngModel"
           required
         >
-          <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">{{
-            tipo.viewValue
-          }}</mat-option>
+          @for (tipo of tipos; track $index) {
+          <mat-option [value]="tipo.value">{{ tipo.viewValue }}</mat-option>
+          }
         </mat-select>
-        <span *ngIf="!unidadeMedida && form.submitted" class="error-message"
-          >O campo não pode estar vazio</span
-        >
+        @if (!unidadeMedida && form.submitted) {
+        <span class="error-message">O campo não pode estar vazio</span>
+        }
       </mat-form-field>
 
       <!-- quantidade -->
@@ -52,12 +52,13 @@
           #quantidadeModel="ngModel"
         />
         <span matSuffix>{{ getQuantidadeAddon() }}</span>
-        <span
-          *ngIf="quantidade === null && form.submitted"
-          class="error-message"
-          >O campo não pode estar vazio</span
-        >
+        @if (quantidade === null && form.submitted) {
+        <span class="error-message">O campo não pode estar vazio</span>
+        }
       </mat-form-field>
+      </div>
+      <!-- unidade de medida -->
+      
 
       <!-- preço -->
       <mat-form-field
@@ -74,9 +75,9 @@
           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
           required
         />
-        <span *ngIf="!preco && form.submitted" class="error-message"
-          >O campo não pode estar vazio</span
-        >
+        @if (!preco && form.submitted) {
+        <span class="error-message">O campo não pode estar vazio</span>
+        }
       </mat-form-field>
 
       <!-- produto perecivel -->
@@ -107,12 +108,13 @@
           [for]="fabricacao"
         ></mat-datepicker-toggle>
         <mat-datepicker #fabricacao></mat-datepicker>
-        <span *ngIf="!dataFabricacao && form.submitted" class="error-message"
-          >O campo não pode estar vazio</span
-        >
-        <span *ngIf="fabricacaoInvalida && form.submitted" class="error-message"
+        @if (!dataFabricacao && form.submitted) {
+        <span class="error-message">O campo não pode estar vazio</span>
+        }@else if (fabricacaoInvalida && form.submitted) {
+        <span class="error-message"
           >Não pode ser superior a data de validade</span
         >
+        }
       </mat-form-field>
 
       <!-- data de validade -->
@@ -137,12 +139,11 @@
           [for]="validade"
         ></mat-datepicker-toggle>
         <mat-datepicker #validade></mat-datepicker>
-        <span *ngIf="!dataValidade && form.submitted" class="error-message">
-          O campo não pode estar vazio
-        </span>
-        <span *ngIf="vencido && form.submitted" class="error-message">
-          O produto está vencido!
-        </span>
+        @if (!dataValidade && form.submitted) {
+        <span class="error-message"> O campo não pode estar vazio </span>
+        }@else if (vencido && form.submitted) {
+        <span class="error-message"> O produto está vencido! </span>
+        }
       </mat-form-field>
     </div>
   </main>

@@ -10,6 +10,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ConfirmationDialogComponent } from '../../modal/confirmation-dialog/confirmation-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-listagem',
@@ -21,6 +24,8 @@ import { ConfirmationDialogComponent } from '../../modal/confirmation-dialog/con
     MatNativeDateModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatButtonModule,
+    CommonModule
   ],
 
   templateUrl: './listagem.component.html',
@@ -49,7 +54,7 @@ export class ListagemComponent implements OnInit {
     }
   }
   editItem(item: any) {
-    this.router.navigate(['/form'], { queryParams: { id: item.id } });
+    this.router.navigate(['/'], { queryParams: { id: item.id } });
   }
   async deleteItem(item: any) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

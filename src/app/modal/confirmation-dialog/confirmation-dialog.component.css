@@ -1,0 +1,10 @@
+*{
+    color: rgb(0, 0, 32);
+}
+.modal{
+    min-height: 200px;
+    margin: 32px;
+}
+.custom-dialog-actions{
+    display: flex;
+}
