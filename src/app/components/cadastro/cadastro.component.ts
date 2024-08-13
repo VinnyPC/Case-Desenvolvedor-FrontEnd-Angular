@@ -9,7 +9,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -27,7 +27,7 @@ export const MY_DATE_FORMATS = {
   selector: 'app-cadastro',
   standalone: true,
   imports: [
-    CommonModule, // Incluindo CommonModule
+    CommonModule,
     FormsModule,
     MatSelectModule,
     CurrencyMaskModule,
@@ -52,8 +52,9 @@ export class CadastroComponent {
   unidadeMedida: string = '';
   quantidade: number | null = null;
   preco: string = '';
-  dataFabricacaoValue: Date | null = null;
-  dataValidadeValue: Date | null = null;
+  dataFabricacao: Date | null = null;
+  dataValidade: Date | null = null;
+
 
   tipos = [
     { value: 'lt', viewValue: 'Litro' },
@@ -62,11 +63,45 @@ export class CadastroComponent {
   ];
 
   onSubmit() {
-    if (!this.nomeItem || !this.unidadeMedida || !this.quantidade || !this.preco || !this.dataFabricacaoValue ||
-      (this.perecivel === 'true' && !this.dataValidadeValue)) {
-      console.log('Por favor, preencha todos os campos obrigatórios.');
-    } else {
-      console.log('Formulário enviado com sucesso!');
+    
+    if (!this.nomeItem || !this.unidadeMedida || this.quantidade === null || !this.preco || !this.dataFabricacao ||
+      (this.perecivel === 'true' && !this.dataValidade)) {
+      console.log('Erro nos campos');
+      return;
+    }
+
+    
+    const formData = {
+      nomeItem: this.nomeItem,
+      unidadeMedida: this.unidadeMedida,
+      quantidade: this.quantidade,
+      preco: this.preco,
+      dataFabricacaoValue: this.dataFabricacao?.toISOString(),
+      dataValidadeValue: this.dataValidade?.toISOString(),
+      perecivel: this.perecivel,
+    };
+
+    
+    const storedData = localStorage.getItem('formDataArray');
+    let formDataArray = storedData ? JSON.parse(storedData) : [];
+
+   
+    formDataArray.push(formData);
+
+   
+    localStorage.setItem('formDataArray', JSON.stringify(formDataArray));
+
+   
+    console.log(formData);
+  }
+
+  getQuantidadeAddon(): string {
+    switch (this.unidadeMedida) {
+      case 'lt': return 'lt';
+      case 'kg': return 'kg';
+      case 'un': return 'un';
+      default: return '';
     }
   }
+
 }

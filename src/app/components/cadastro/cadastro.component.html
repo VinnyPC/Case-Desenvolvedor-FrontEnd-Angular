@@ -1,7 +1,7 @@
 <form (ngSubmit)="onSubmit()" #form="ngForm">
   <main class="container">
     <div class="container-cadastro">
-      <!-- Nome do item -->
+      <!-- nome do item -->
       <mat-form-field class="nome-item" [ngClass]="{'erro': !nomeItem && form.submitted}">
         <mat-label>Nome do item</mat-label>
         <input matInput
@@ -14,8 +14,8 @@
         <mat-hint align="end">{{ nomeItem.length }} / 50</mat-hint>
         <span *ngIf="!nomeItem && form.submitted" class="error-message">O campo não pode estar vazio</span>
       </mat-form-field>
-      
-      <!-- Unidade de medida -->
+
+      <!-- unidade de medida -->
       <mat-form-field [ngClass]="{'erro': !unidadeMedida && form.submitted}">
         <mat-label>Unidade de medida</mat-label>
         <mat-select name="unidadeMedida" [(ngModel)]="unidadeMedida" #unidadeModel="ngModel" required>
@@ -24,19 +24,18 @@
         <span *ngIf="!unidadeMedida && form.submitted" class="error-message">O campo não pode estar vazio</span>
       </mat-form-field>
 
-      <!-- Quantidade -->
+      <!-- quantidade -->
       <mat-form-field [ngClass]="{'erro': quantidade === null && form.submitted}">
         <mat-label>Quantidade</mat-label>
         <input matInput
                name="quantidade"
-               type="number"
                [(ngModel)]="quantidade"
-               #quantidadeModel="ngModel"
-               required />
+               #quantidadeModel="ngModel"/>
+               <span matSuffix>{{ getQuantidadeAddon() }}</span>
         <span *ngIf="quantidade === null && form.submitted" class="error-message">O campo não pode estar vazio</span>
       </mat-form-field>
 
-      <!-- Preço -->
+      <!-- preço -->
       <mat-form-field class="example-full-width" [ngClass]="{'erro': !preco && form.submitted}">
         <mat-label>Preço</mat-label>
         <input matInput
@@ -49,41 +48,41 @@
         <span *ngIf="!preco && form.submitted" class="error-message">O campo não pode estar vazio</span>
       </mat-form-field>
 
-      <!-- Produto perecível -->
+      <!-- produto perecivel -->
       <mat-radio-group [(ngModel)]="perecivel" name="perecivel">
         <span>Produto perecível?</span>
         <mat-radio-button value="true">Sim</mat-radio-button>
         <mat-radio-button value="false">Não</mat-radio-button>
       </mat-radio-group>
 
-      <!-- Data de fabricação -->
-      <mat-form-field appearance="fill" [ngClass]="{'erro': !dataFabricacaoValue && form.submitted}">
+      <!-- data de fabricaçao -->
+      <mat-form-field appearance="fill" [ngClass]="{'erro': !dataFabricacao && form.submitted}">
         <mat-label>Data de fabricação</mat-label>
         <input matInput
                name="dataFabricacao"
-               [(ngModel)]="dataFabricacaoValue"
+               [(ngModel)]="dataFabricacao"
                [matDatepicker]="fabricacao"
                #dataFabricacaoModel="ngModel"
                placeholder="Escolha uma data"
                required />
         <mat-datepicker-toggle matSuffix [for]="fabricacao"></mat-datepicker-toggle>
         <mat-datepicker #fabricacao></mat-datepicker>
-        <span *ngIf="!dataFabricacaoValue && form.submitted" class="error-message">O campo não pode estar vazio</span>
+        <span *ngIf="!dataFabricacao && form.submitted" class="error-message">O campo não pode estar vazio</span>
       </mat-form-field>
 
-      <!-- Data de validade -->
-      <mat-form-field *ngIf="perecivel === 'true'" appearance="fill" [ngClass]="{'erro': !dataValidadeValue && form.submitted}">
+      <!-- data de validade -->
+      <mat-form-field *ngIf="perecivel === 'true'" appearance="fill" [ngClass]="{'erro': !dataValidade && form.submitted}">
         <mat-label>Data de validade</mat-label>
         <input matInput
                name="dataValidade"
-               [(ngModel)]="dataValidadeValue"
+               [(ngModel)]="dataValidade"
                [matDatepicker]="validade"
                #dataValidadeModel="ngModel"
                placeholder="Escolha uma data"
                required />
         <mat-datepicker-toggle matSuffix [for]="validade"></mat-datepicker-toggle>
         <mat-datepicker #validade></mat-datepicker>
-        <span *ngIf="!dataValidadeValue && form.submitted" class="error-message">O campo não pode estar vazio</span>
+        <span *ngIf="!dataValidade && form.submitted" class="error-message">O campo não pode estar vazio</span>
       </mat-form-field>
     </div>
   </main>

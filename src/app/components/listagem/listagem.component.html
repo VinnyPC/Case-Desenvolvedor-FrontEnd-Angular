@@ -1,1 +1,53 @@
-<p>listagem works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Itens do Local Storage</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- nome do Item -->
+      <ng-container matColumnDef="nomeItem">
+        <th mat-header-cell *matHeaderCellDef> Nome do Item </th>
+        <td mat-cell *matCellDef="let element"> {{element.nomeItem}} </td>
+      </ng-container>
+
+      <!-- data fabricação -->
+      <ng-container matColumnDef="dataFabricacaoValue">
+        <th mat-header-cell *matHeaderCellDef> Data de Fabricação </th>
+        <td mat-cell *matCellDef="let element"> {{element.dataFabricacaoValue }} </td>
+      </ng-container>
+
+      <!-- data de validade -->
+      <ng-container matColumnDef="dataValidadeValue">
+        <th mat-header-cell *matHeaderCellDef> Data de Validade </th>
+        <td mat-cell *matCellDef="let element"> {{element.dataValidadeValue }} </td>
+      </ng-container>
+
+      <!-- quantidade -->
+      <ng-container matColumnDef="quantidade">
+        <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantidade}} </td>
+      </ng-container>
+
+      <!-- unidade de medida -->
+      <ng-container matColumnDef="unidadeMedida">
+        <th mat-header-cell *matHeaderCellDef> Unidade de Medida </th>
+        <td mat-cell *matCellDef="let element"> {{element.unidadeMedida}} </td>
+      </ng-container>
+
+      <!-- preco -->
+      <ng-container matColumnDef="preco">
+        <th mat-header-cell *matHeaderCellDef> Preço </th>
+        <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
+      </ng-container>
+
+      <!-- perecivel -->
+      <ng-container matColumnDef="perecivel">
+        <th mat-header-cell *matHeaderCellDef> Perecível </th>
+        <td mat-cell *matCellDef="let element"> {{element.perecivel ? 'Sim' : 'Não'}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
