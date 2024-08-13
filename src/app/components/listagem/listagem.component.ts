@@ -67,7 +67,7 @@ export class ListagemComponent implements OnInit {
         try {
           const storedData = localStorage.getItem('formDataArray');
           let formDataArray = storedData ? JSON.parse(storedData) : [];
-          formDataArray = formDataArray.filter((data: any) => data.id !== item.id); // Filtra o item com base no ID
+          formDataArray = formDataArray.filter((data: any) => data.id !== item.id);
           localStorage.setItem('formDataArray', JSON.stringify(formDataArray));
           this.loadData();
           this.showNotification('Item excluído com sucesso', 'success');
